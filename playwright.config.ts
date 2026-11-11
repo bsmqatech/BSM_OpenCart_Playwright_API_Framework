@@ -18,7 +18,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
 
 
 
@@ -51,8 +51,8 @@ export default defineConfig({
   
   use: {
     baseURL: process.env.BASE_URL,
-    headless: true,
-    trace: 'on-first-retry',
+    headless:!process.env.CI ? false : true,
+    trace: 'on',
     screenshot:'on',
     video: 'on',
     
